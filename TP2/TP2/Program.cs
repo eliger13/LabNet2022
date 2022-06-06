@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TP2.Exceptions;
+using TP2.Extensions;
+
 
 namespace TP2
 {
@@ -11,19 +9,44 @@ namespace TP2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Añadir dividendo:");
-            int dividendo = int.Parse(Console.ReadLine());
-            dividendo.RealizarDivisionPorCero();
-            Console.WriteLine("Añadir divisor:");
-            string divisor = Console.ReadLine();
-            dividendo.RealizarDivisionDeDosNumeros(divisor);
-            dividendo.RealizarDivisionDeDosNumeros(null);
-            dividendo.RealizarDivisionDeDosNumeros("0");
+            //punto 1
+            try
+            {
+                Console.WriteLine("Punto 1");
+                Console.WriteLine("Añadir dividendo:");
+                int dividendo = int.Parse(Console.ReadLine());
+                dividendo.RealizarDivisionPorCero();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Se termino de realizar la division.");
+            }
+
+            //punto 2
+            try
+            {
+                Console.WriteLine("\nPunto 2");
+                Console.WriteLine("Añadir dividendo:");
+                int dividendo = int.Parse(Console.ReadLine());
+                Console.WriteLine("Añadir divisor:");
+                string divisor = Console.ReadLine();
+                float division = dividendo.RealizarDivisionDeDosNumeros(divisor);
+                Console.WriteLine($"El resultado de la division es: {division}");
+            } 
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
 
             //Punto 3
             Logic l = new Logic();
             try
             {
+                Console.WriteLine("\nPunto 3");
                 l.MetodoQueGeneraExcepcion();
             }
             catch(Exception ex)
@@ -35,6 +58,7 @@ namespace TP2
             //Punto 4
             try
             {
+                Console.WriteLine("\nPunto 4");
                 l.MetodoQueGeneraExcepcionPersonalizada();
             }
             catch(MyException ex)

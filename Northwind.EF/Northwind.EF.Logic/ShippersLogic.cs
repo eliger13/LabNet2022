@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Northwind.EF.Entities;
+using Northwind.EF.Common.Exceptions;
 
 namespace Northwind.EF.Logic
 {
@@ -20,17 +19,29 @@ namespace Northwind.EF.Logic
         }
         public void Update(Shippers shipper)
         {
-            var actualizarShipper = context.Shippers.Find(shipper.ShipperID);
-            actualizarShipper.CompanyName = shipper.CompanyName;
-            actualizarShipper.Phone = shipper.Phone;
+            var updateShipper = context.Shippers.Find(shipper.ShipperID);
+            updateShipper.CompanyName = shipper.CompanyName;
+            updateShipper.Phone = shipper.Phone;
             context.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            var eliminarShipper = context.Shippers.Find(id);
-            context.Shippers.Remove(eliminarShipper);
-            context.SaveChanges();
+            try
+            {
+                var deteteShipper = context.Shippers.Find(id);
+                context.Shippers.Remove(deteteShipper);
+                context.SaveChanges();
+            }
+            catch(System.Data.Entity.Infrastructure.DbUpdateException)
+            {
+                throw new DataRelatedDataBaseException("Shipper");
+
+            }
+            catch (Exception)
+            {
+                throw new Exception("There is an error deleting this shipper");
+            }
         }
     }
 }

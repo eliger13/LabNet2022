@@ -98,6 +98,7 @@
             this.ButtonCancelarShipper.TabIndex = 3;
             this.ButtonCancelarShipper.Text = "Cancel";
             this.ButtonCancelarShipper.UseVisualStyleBackColor = true;
+            this.ButtonCancelarShipper.Click += new System.EventHandler(this.ButtonCancelarShipper_Click);
             // 
             // dataGridViewShippers
             // 
@@ -233,6 +234,7 @@
             this.ButtonCancelarOD.TabIndex = 18;
             this.ButtonCancelarOD.Text = "Cancel";
             this.ButtonCancelarOD.UseVisualStyleBackColor = true;
+            this.ButtonCancelarOD.Click += new System.EventHandler(this.ButtonCancelarOD_Click);
             // 
             // ButtonEliminarOD
             // 
@@ -242,6 +244,7 @@
             this.ButtonEliminarOD.TabIndex = 25;
             this.ButtonEliminarOD.Text = "Delete";
             this.ButtonEliminarOD.UseVisualStyleBackColor = true;
+            this.ButtonEliminarOD.Click += new System.EventHandler(this.ButtonEliminarOD_Click);
             // 
             // ButtonActualizarOD
             // 
@@ -251,6 +254,7 @@
             this.ButtonActualizarOD.TabIndex = 26;
             this.ButtonActualizarOD.Text = "Update";
             this.ButtonActualizarOD.UseVisualStyleBackColor = true;
+            this.ButtonActualizarOD.Click += new System.EventHandler(this.ButtonActualizarOD_Click);
             // 
             // label8
             // 
@@ -271,7 +275,7 @@
             65536});
             this.numericODUnitPrice.Location = new System.Drawing.Point(107, 382);
             this.numericODUnitPrice.Maximum = new decimal(new int[] {
-            1,
+            500,
             0,
             0,
             0});
@@ -282,11 +286,6 @@
             // numericODQuantity
             // 
             this.numericODQuantity.Location = new System.Drawing.Point(107, 425);
-            this.numericODQuantity.Maximum = new decimal(new int[] {
-            600,
-            0,
-            0,
-            0});
             this.numericODQuantity.Name = "numericODQuantity";
             this.numericODQuantity.Size = new System.Drawing.Size(120, 22);
             this.numericODQuantity.TabIndex = 29;

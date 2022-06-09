@@ -30,7 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.ButtonEliminarShipper = new System.Windows.Forms.Button();
-            this.ButtonAñadirShipper = new System.Windows.Forms.Button();
+            this.ButtonAddShipper = new System.Windows.Forms.Button();
             this.ButtonCancelarShipper = new System.Windows.Forms.Button();
             this.dataGridViewShippers = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
@@ -80,15 +80,15 @@
             this.ButtonEliminarShipper.UseVisualStyleBackColor = true;
             this.ButtonEliminarShipper.Click += new System.EventHandler(this.ButtonEliminarShipper_Click);
             // 
-            // ButtonAñadirShipper
+            // ButtonAddShipper
             // 
-            this.ButtonAñadirShipper.Location = new System.Drawing.Point(303, 123);
-            this.ButtonAñadirShipper.Name = "ButtonAñadirShipper";
-            this.ButtonAñadirShipper.Size = new System.Drawing.Size(86, 38);
-            this.ButtonAñadirShipper.TabIndex = 2;
-            this.ButtonAñadirShipper.Text = "Add";
-            this.ButtonAñadirShipper.UseVisualStyleBackColor = true;
-            this.ButtonAñadirShipper.Click += new System.EventHandler(this.ButtonGuardarShipper_Click);
+            this.ButtonAddShipper.Location = new System.Drawing.Point(303, 123);
+            this.ButtonAddShipper.Name = "ButtonAddShipper";
+            this.ButtonAddShipper.Size = new System.Drawing.Size(86, 38);
+            this.ButtonAddShipper.TabIndex = 2;
+            this.ButtonAddShipper.Text = "Add";
+            this.ButtonAddShipper.UseVisualStyleBackColor = true;
+            this.ButtonAddShipper.Click += new System.EventHandler(this.ButtonGuardarShipper_Click);
             // 
             // ButtonCancelarShipper
             // 
@@ -344,7 +344,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dataGridViewShippers);
             this.Controls.Add(this.ButtonCancelarShipper);
-            this.Controls.Add(this.ButtonAñadirShipper);
+            this.Controls.Add(this.ButtonAddShipper);
             this.Controls.Add(this.ButtonEliminarShipper);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
@@ -364,7 +364,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button ButtonEliminarShipper;
-        private System.Windows.Forms.Button ButtonAñadirShipper;
+        private System.Windows.Forms.Button ButtonAddShipper;
         private System.Windows.Forms.Button ButtonCancelarShipper;
         private System.Windows.Forms.DataGridView dataGridViewShippers;
         private System.Windows.Forms.Label label2;

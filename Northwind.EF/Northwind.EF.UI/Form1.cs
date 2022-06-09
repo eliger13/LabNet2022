@@ -55,7 +55,6 @@ namespace Northwind.EF.UI
                 textBoxShipperPhone.Text = "";
                 MessageBox.Show($"The shipper has been added successfully.");
             } 
-            // Añadir aca una exepcion personalizada
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -64,6 +63,11 @@ namespace Northwind.EF.UI
 
         public void InsertarShipper(string companyName, string phone)
         {
+            if(companyName == "" || phone == "")
+            {
+                throw new Exception("Field company name or phone is empty");
+            }
+
             ShippersLogic shippersLogic = new ShippersLogic();
             shippersLogic.Add(new Shippers
             {
@@ -88,7 +92,8 @@ namespace Northwind.EF.UI
                     ListarShippers();
                     textBoxShipperCompanyName.Text = "";
                     textBoxShipperPhone.Text = "";
-                    ButtonAñadirShipper.Enabled = true;
+                    ButtonAddShipper.Enabled = true;
+                    dataGridViewShippers.Enabled = true;
                 }
                 else
                 {
@@ -96,7 +101,9 @@ namespace Northwind.EF.UI
                     textBoxShipperPhone.Text = shipper.Phone;
                     ButtonActualizarShippers.Text = "Save";
                     updateShipper = true;
-                    ButtonAñadirShipper.Enabled = false;
+                    ButtonAddShipper.Enabled = false;
+                    ButtonEliminarShipper.Enabled = false;
+                    dataGridViewShippers.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -147,12 +154,21 @@ namespace Northwind.EF.UI
         }
         #endregion
 
+        #region Cancel Shipper button 
         private void ButtonCancelarShipper_Click(object sender, EventArgs e)
         {
+            ButtonActualizarShippers.Text = "Update";
+            updateShipper = false;
+            
             textBoxShipperCompanyName.Text = "";
             textBoxShipperPhone.Text = "";
+            ButtonAddShipper.Enabled = true;
+            ButtonEliminarShipper.Enabled = true;
+            dataGridViewShippers.Enabled = true;
+
             ListarShippers();
         }
+        #endregion
 
         #region Update Order Detail
         private void ButtonActualizarOD_Click(object sender, EventArgs e)
@@ -170,6 +186,8 @@ namespace Northwind.EF.UI
                     numericODUnitPrice.Value = 0;
                     numericODQuantity.Value = 0;
                     numericODDiscount.Value = 0;
+                    ButtonEliminarOD.Enabled = true;
+                    dataGridViewOrderDetails.Enabled = true;
                 }
                 else
                 {
@@ -177,6 +195,8 @@ namespace Northwind.EF.UI
                     numericODQuantity.Value = order_Details.Quantity;
                     numericODDiscount.Value = Convert.ToDecimal(order_Details.Discount);
                     ButtonActualizarOD.Text = "Save";
+                    ButtonEliminarOD.Enabled = false;
+                    dataGridViewOrderDetails.Enabled = false;
                     updateOrderDetail = true;
                 }
             }
@@ -232,9 +252,14 @@ namespace Northwind.EF.UI
 
         private void ButtonCancelarOD_Click(object sender, EventArgs e)
         {
+            ButtonActualizarOD.Text = "Update";
+            updateOrderDetail = false;
+
             numericODUnitPrice.Value = 0;
             numericODQuantity.Value = 0;
             numericODDiscount.Value = 0;
+            ButtonEliminarOD.Enabled = true;
+            dataGridViewOrderDetails.Enabled = true;
             ListarOrderDetails();
         }
 

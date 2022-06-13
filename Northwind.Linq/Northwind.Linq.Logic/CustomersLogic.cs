@@ -56,11 +56,8 @@ namespace Northwind.Linq.Logic
         public List<CustomerOrdersAssociated> GetCustomerOrdersAssociated()
         {
             var query = from customer in context.Customers
-                        join order in context.Orders
-                           on customer.CustomerID equals order.CustomerID into co
-                        from newCustomerOrders in co.DefaultIfEmpty()
-                        group newCustomerOrders by newCustomerOrders.CustomerID into customerOrders
-                        select new CustomerOrdersAssociated{ customer = customerOrders.Key, ordersAssociated = customerOrders.Count() };
+                        let orders = customer.Orders.Count()
+                        select new CustomerOrdersAssociated { customer = customer, ordersAssociated = orders };
 
             return query.ToList();
         }
@@ -73,7 +70,7 @@ namespace Northwind.Linq.Logic
 
         public class CustomerOrdersAssociated
         {
-            public string customer { get; set; }
+            public Customers customer { get; set; }
             public int ordersAssociated { get; set; }
         }
     }

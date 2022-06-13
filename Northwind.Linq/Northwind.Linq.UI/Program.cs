@@ -107,7 +107,7 @@ namespace Northwind.Linq.UI
             var customerOrdersAssociated = customers.GetCustomerOrdersAssociated();
             foreach (var customer in customerOrdersAssociated)
             {
-                Console.WriteLine($"Customer: {customer.customer} has associate: {customer.ordersAssociated} orders.");
+                Console.WriteLine($"Customer: {customer.customer.CompanyName} has associate: {customer.ordersAssociated} orders.");
             }
 
             Console.ReadLine();

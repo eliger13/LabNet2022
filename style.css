@@ -156,3 +156,8 @@ form .form-row .input-select {
         width: 40% !important;
     }
 }
+
+.error {
+    visibility: hidden;
+    color: red;
+}

@@ -15,18 +15,19 @@
             <p>Complete the following form</p>
             <hr />
         </div>
-        <form id="register" action="javascript:alert('Registration sent successfully')">
+        <form id="register" novalidate>
             <div class="form-row">
                 <div class="input-data">
                     <div class="underline"></div>
                     <input type="text" id="name" name="name" required />
-                    <label class="text" for="">Firstname</label>
-                    <span class="error-name" hidden>Name required</span>
+                    <label class="text" for="">First Name</label>
+                    <span class="error error-name">First Name required</span>
                 </div>
                 <div class="input-data">
                     <input type="text" id="lastname" name="lastname" required />
                     <div class="underline"></div>
-                    <label class="text" for="lastname">Lastname </label>
+                    <label class="text" for="lastname">Last Name </label>
+                    <span class="error error-lastname">Last Name required</span>
                 </div>
             </div>
 
@@ -43,6 +44,7 @@
                         <option value="">Day</option>
                     </select>
                 </div>
+                <span class="error error-birthdate">Birthdate required</span>
 
                 <div class="input-data">
                     <input type="number" id="age" name="age" readonly />
@@ -59,6 +61,8 @@
                     <input id="female" type="radio" name="gender" value="female" required>
                     <label for="female">Female</label>
                 </div>
+                <span class="error error-gender">Gender required</span>
+
             </div>
 
             <div class="form-row">
@@ -66,12 +70,14 @@
                     <input type="text" id="country" name="country" required />
                     <div class="underline"></div>
                     <label class="text" for="country">Country</label>
+                    <span class="error error-country">Country required</span>
                 </div>
 
                 <div class="input-data">
                     <input type="text" id="state" name="state" required />
                     <div class="underline"></div>
                     <label class="text" for="state">State</label>
+                    <span class="error error-state">State required</span>
                 </div>
             </div>
 
@@ -80,26 +86,30 @@
                     <input type="text" id="city" name="city" required />
                     <div class="underline"></div>
                     <label class="text" for="city">City</label>
+                    <span class="error error-city">City required</span>
                 </div>
 
                 <div class="input-data">
                     <input type="text" id="address" name="address" required />
                     <div class="underline"></div>
                     <label class="text" for="address">Address</label>
+                    <span class="error error-address">Address required</span>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="input-data">
-                    <input type="text" id="Zipcode" name="zipcode" required />
+                    <input type="text" id="zipcode" name="zipcode" required />
                     <div class="underline"></div>
                     <label class="text" for="zipcode">Zipcode</label>
+                    <span class="error error-zipcode">Zipcode required</span>
                 </div>
 
                 <div class="input-data">
                     <input type="email" id="email" name="email" required />
                     <div class="underline"></div>
                     <label class="text" for="email">Email</label>
+                    <span class="error error-email">Email required</span>
                 </div>
             </div>
 

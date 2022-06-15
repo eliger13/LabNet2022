@@ -56,6 +56,32 @@ function calculateAge(){
     }
 }
 
+function toggleError(element){
+    console.log(element);
+    if (!$(`#${element}`).val()){
+        $(`.error-${element}`).css("visibility", "visible");
+        return false;
+    } else {
+        $(`.error-${element}`).css("visibility", "hidden");
+        return true;
+    }
+}
+
+function handleSubmitForm(event){
+    event.preventDefault();
+
+    if (!toggleError('name')) return false;
+    if (!toggleError('lastname')) return false;
+    if (!toggleError('country')) return false;
+    if (!toggleError('state')) return false;
+    if (!toggleError('city')) return false;
+    if (!toggleError('address')) return false;
+    if (!toggleError('zipcode')) return false;
+    if (!toggleError('email')) return false;
+
+    alert('Registration sent successfully');
+}
+
 function handleResetForm(){
     $('#age').removeClass('valid');
 }

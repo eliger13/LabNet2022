@@ -38,7 +38,7 @@ namespace Northwind.EF.UI
 
         public void ListarOrderDetails()
         {
-            Order_DetailsLogic order_DetailsLogic = new Order_DetailsLogic();
+            OrderDetailsLogic order_DetailsLogic = new OrderDetailsLogic();
             dataGridViewOrderDetails.DataSource = null;
             dataGridViewOrderDetails.DataSource = order_DetailsLogic.GetAll();
         }
@@ -207,7 +207,7 @@ namespace Northwind.EF.UI
         }
         public void UpdateOrderDetails(int orderID, int productID, decimal unitPrice, short quantity, float discount)
         {
-            Order_DetailsLogic order_DetailsLogic = new Order_DetailsLogic();
+            OrderDetailsLogic order_DetailsLogic = new OrderDetailsLogic();
             order_DetailsLogic.Update(new Order_Details
             {
                 OrderID = orderID,
@@ -245,7 +245,7 @@ namespace Northwind.EF.UI
 
         public void DeleteOrderDetail(int ordId, int prdId)
         {
-            Order_DetailsLogic order_Details = new Order_DetailsLogic();
+            OrderDetailsLogic order_Details = new OrderDetailsLogic();
             order_Details.Delete(ordId, prdId);
         }
         #endregion

@@ -6,11 +6,16 @@ using Northwind.EF.Entities;
 
 namespace Northwind.EF.Logic
 {
-    public class Order_DetailsLogic : BaseLogic
+    public class OrderDetailsLogic : BaseLogic
     {
         public List<Order_Details> GetAll()
         {
             return context.Order_Details.ToList();
+        }
+        public Order_Details GetOrderDetail(int ordId, int prdId )
+        {
+            var data = context.Order_Details.Where(x => x.OrderID == ordId && x.ProductID == prdId).FirstOrDefault();
+            return data;
         }
 
         public void Update(Order_Details orderDetail)

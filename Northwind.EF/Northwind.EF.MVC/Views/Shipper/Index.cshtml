@@ -1,0 +1,76 @@
+﻿@model List<Northwind.EF.MVC.Models.ShipperView>
+@{
+    ViewBag.Title = "Shipper Lists";
+}
+
+<div>
+    <h2>@ViewBag.Title</h2>
+    <hr />
+    <div class="alert alert-success success-message" role="alert" hidden></div>
+    <div class="alert alert-danger failure-message" role="alert" hidden></div>
+    <table class="table table-hover">
+        <thead>
+            <tr class="bg-primary">
+                <th scope="col">ID</th>
+                <th scope="col">Company Name</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var shipper in Model)
+            {
+                <tr id="shipper-@shipper.Id">
+                    <td scope="row">@shipper.Id</td>
+                    <td>@shipper.CompanyName</td>
+                    <td>@shipper.Phone</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Update", new { Id = shipper.Id }) |
+                        <a href="#"
+                           data-id="@shipper.Id"
+                           data-company-name="@shipper.CompanyName"
+                           data-toggle="modal"
+                           data-target="#modal-delete-shipper">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <div class="form-group">
+        <div class="col-md-offset-5 col-md-10">
+            <button class="btn btn-default">@Html.ActionLink("Create new", "Insert")</button>
+        </div>
+    </div>
+    @Html.Partial("Delete")
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $('#modal-delete-shipper').on('show.bs.modal', function (event) {
+            var id = event.relatedTarget.dataset['id'];
+            var companyName = event.relatedTarget.dataset['companyName'];
+            $(this).find('.shipper-id').text(id);
+            $(this).find('.shipper-company-name').text(companyName);
+        });
+
+        $('#modal-delete-shipper .btn-delete-shipper').on('click', function (event) {
+            var id = $('.shipper-id').text();
+            $.ajax({
+                method: 'POST',
+                url: `@Url.Action("Delete")/${id}`,
+            }).done(function (success) {
+                $('.success-message').text(success.message)
+                $('.success-message').show().delay(10000).fadeOut();
+                $(`#shipper-${id}`).remove();
+            }).fail(function (error) {
+                $('.failure-message').text(error.responseJSON.message)
+                $('.failure-message').show().delay(10000).fadeOut();
+            }).always(function () {
+                $('#modal-delete-shipper').modal('hide');
+            });
+        })
+    </script>
+}

@@ -1,0 +1,48 @@
+﻿@model Northwind.EF.MVC.Models.OrderDetailView
+
+@{
+    ViewBag.Title = "Edit Order";
+}
+
+<div class="form-horizontal">
+    <h2>@ViewBag.Title</h2>
+    <h4>Edit the fields:</h4>
+    <hr />
+    @using (Html.BeginForm("Update", "OrderDetail", new {ordId = Model.Id, prdId = Model.PrdId }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(o => o.Id)
+        @Html.HiddenFor(o => o.PrdId)
+
+        <div class="form-group">
+            @Html.LabelFor(o => o.UnitPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(o => o.UnitPrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(o => o.UnitPrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(o => o.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(o => o.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(o => o.Quantity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(o => o.Discount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(o => o.Discount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(o => o.Discount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    }
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</div>

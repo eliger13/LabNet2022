@@ -17,6 +17,12 @@ namespace Northwind.EF.Logic
             context.Shippers.Add(shipper);
             context.SaveChanges();
         }
+
+        public Shippers GetShipper(int id)
+        {
+            var data = context.Shippers.Where(x => x.ShipperID == id).FirstOrDefault();
+            return data;
+        }
         public void Update(Shippers shipper)
         {
             var updateShipper = context.Shippers.Find(shipper.ShipperID);

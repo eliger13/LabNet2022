@@ -14,7 +14,7 @@ namespace Northwind.EF.WebApi.Controllers
     {
         OrderDetailsLogic orderDetailsLogic = new OrderDetailsLogic();
 
-        // GET: All OrderDetails
+        // GET: All OrderDetails https://localhost:44383/api/orderdetails/
         public IHttpActionResult Get(int page = 1)
         {
             List<Order_Details> orderDetailsList = orderDetailsLogic.GetAll();
@@ -38,7 +38,7 @@ namespace Northwind.EF.WebApi.Controllers
             return Ok(orderDetailsPaginated);
         }
 
-        //GET: Order Detail
+        //GET: Order Detail Ej:https://localhost:44383/api/orderdetails/10250?prdId=51
         public IHttpActionResult Get(int id, int prdId)
         {
             try

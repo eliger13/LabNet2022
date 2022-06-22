@@ -14,7 +14,7 @@ namespace Northwind.EF.WebApi.Controllers
     {
         ShippersLogic shippersLogic = new ShippersLogic();
 
-        // GET: All Shippers
+        // GET: All Shippers https://localhost:44383/api/shippers/
         public IHttpActionResult Get()
         {
             List<Shippers> shippersList = shippersLogic.GetAll();
@@ -29,7 +29,7 @@ namespace Northwind.EF.WebApi.Controllers
             return Ok(shippersView);
         }
 
-        //GET: Shipper
+        //GET: Shipper Ej:https://localhost:44383/api/shippers/3
         public IHttpActionResult Get(int id)
         {
             try

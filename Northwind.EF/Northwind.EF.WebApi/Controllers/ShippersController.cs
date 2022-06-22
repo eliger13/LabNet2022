@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
 using Northwind.EF.Logic;
 using Northwind.EF.Entities;
 using Northwind.EF.MVC.Models;
-using System.Net.Http;
 
-namespace Northwind.EF.MVC.Controllers
+namespace Northwind.EF.WebApi.Controllers
 {
-    public class ShipperController : Controller
+    public class ShippersController : ApiController
     {
         ShippersLogic shippersLogic = new ShippersLogic();
 
-        // GET: Shipper
-        public ActionResult Index()
+        // GET: All Shippers
+        public IHttpActionResult Get()
         {
             List<Shippers> shippersList = shippersLogic.GetAll();
 
@@ -26,18 +26,37 @@ namespace Northwind.EF.MVC.Controllers
                 Phone = s.Phone
             }).ToList();
 
-            return View(shippersView);
+            return Ok(shippersView);
         }
 
-        //GET: Shipper/Insert
-        public ActionResult Insert()
+        //GET: Shipper
+        public IHttpActionResult Get(int id)
         {
-            return View();
+            try
+            {
+                Shippers shipper = shippersLogic.GetShipper(id);
+
+                if (shipper != null)
+                {
+                    ShipperView shipperView = new ShipperView
+                    {
+                        Id = shipper.ShipperID,
+                        CompanyName = shipper.CompanyName,
+                        Phone = shipper.Phone
+                    };
+                    return Ok(shipperView);
+                }
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+            return BadRequest();
         }
 
-        //POST: Shipper/Insert
+        //POST: Create
         [HttpPost]
-        public ActionResult Insert([Bind(Include = "CompanyName, Phone")] ShipperView shipperView)
+        public IHttpActionResult Post([FromBody] ShipperView shipperView)
         {
             try
             {
@@ -60,41 +79,32 @@ namespace Northwind.EF.MVC.Controllers
 
                     shippersLogic.Add(shipper);
 
-                    return RedirectToAction("Index");
+                    Shippers newShipper = shippersLogic.GetLastShipper();
+                    
+                    return Ok(new ShipperView
+                    {
+                        Id = newShipper.ShipperID,
+                        CompanyName = newShipper.CompanyName,
+                        Phone = newShipper.Phone
+                    });
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
-                ModelState.AddModelError("", "Unable to save changes, please, try again.");
+                return BadRequest();
             }
-            return View(shipperView);
+            return BadRequest();
         }
 
-        //GET: Shipper/Update
-        public ActionResult Update(int id)
-        {
-            Shippers shipper = shippersLogic.GetShipper(id);
-
-            ShipperView shipperView = new ShipperView
-            {
-                Id = shipper.ShipperID,
-                CompanyName = shipper.CompanyName,
-                Phone = shipper.Phone
-            };
-
-            return View(shipperView);
-        }
-
-        //POST: Shipper/Update
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Update(int id, ShipperView shipperView)
+        //PUT: Shipper
+        [HttpPut]
+        public IHttpActionResult Put(int id, [FromBody] ShipperView shipperView)
         {
             try
             {
                 Shippers shipper = shippersLogic.GetShipper(id);
 
-                if (shipper != null && shipper.ShipperID == shipperView.Id && ModelState.IsValid)
+                if (shipper != null && ModelState.IsValid)
                 {
                     shippersLogic.Update(new Shippers
                     {
@@ -103,30 +113,31 @@ namespace Northwind.EF.MVC.Controllers
                         Phone = shipperView.Phone
                     });
 
-                    return RedirectToAction("Index");
+                    shipperView.Id = id;
+
+                    return Ok(shipperView);
                 }
             }
             catch (Exception)
             {
-
-                return RedirectToAction("Index", "Error");
+                return BadRequest();
             }
-            return View(shipperView);
+
+            return BadRequest();
         }
 
-        //POST: Shipper/Delete
-        [HttpPost, ActionName("Delete")]
-        public JsonResult Delete(int id)
+        //DELETE: Shipper
+        [HttpDelete]
+        public IHttpActionResult Delete(int id)
         {
             try
             {
                 shippersLogic.Delete(id);
-                return Json(new { message = "The shipper have been deleted successfully." }, JsonRequestBehavior.AllowGet);
+                return Ok();
             }
             catch (Exception)
             {
-                Response.StatusCode = 400;
-                return Json(new { message = "The shipper couldn't be deleted." });
+                return BadRequest();
             }
         }
     }

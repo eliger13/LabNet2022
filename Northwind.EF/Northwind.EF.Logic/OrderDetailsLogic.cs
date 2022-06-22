@@ -12,9 +12,10 @@ namespace Northwind.EF.Logic
         {
             return context.Order_Details.ToList();
         }
+
         public Order_Details GetOrderDetail(int ordId, int prdId )
         {
-            var data = context.Order_Details.Where(x => x.OrderID == ordId && x.ProductID == prdId).FirstOrDefault();
+            var data = context.Order_Details.Where(o => o.OrderID == ordId && o.ProductID == prdId).FirstOrDefault();
             return data;
         }
 
@@ -26,6 +27,7 @@ namespace Northwind.EF.Logic
             updateOrderDetail.Discount = orderDetail.Discount;
             context.SaveChanges();
         }
+
         public void Delete(int ordId, int prdId)
         {
             try

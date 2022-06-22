@@ -18,6 +18,12 @@ namespace Northwind.EF.Logic
             context.SaveChanges();
         }
 
+        public Shippers GetLastShipper()
+        {
+            var data = context.Shippers.OrderByDescending(s => s.ShipperID).FirstOrDefault();
+            return data;
+        }
+
         public Shippers GetShipper(int id)
         {
             var data = context.Shippers.Where(x => x.ShipperID == id).FirstOrDefault();

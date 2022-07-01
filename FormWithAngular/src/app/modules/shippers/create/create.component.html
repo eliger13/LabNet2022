@@ -1,0 +1,25 @@
+<h1>Create Shipper</h1>
+
+<mat-card>
+  <mat-card-content>
+    <div>
+      <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>Company Name</mat-label>
+        <input matInput placeholder="Company Name" [(ngModel)]="shipper.CompanyName">
+      </mat-form-field>
+    </div>
+    <div class="">
+      <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>Phone</mat-label>
+        <input type="text" matInput placeholder="Phone" [(ngModel)]="shipper.Phone">
+      </mat-form-field>
+    </div>
+
+  </mat-card-content>
+  <mat-divider></mat-divider>
+  <mat-card-actions>
+    <button mat-button (click)="create()" color="primary">Save</button>
+    <a mat-button [routerLink]="['/']">Cancel</a>
+  </mat-card-actions>
+
+</mat-card>

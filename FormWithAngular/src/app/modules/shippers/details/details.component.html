@@ -1,0 +1,30 @@
+<h1>Details Shipper</h1>
+
+<mat-card>
+    <mat-card-title>{{shipper?.CompanyName}}</mat-card-title>
+    <mat-card-content>
+        <div>
+            <mat-form-field appearance="outline" floatLabel="always">
+                <mat-label>Company Name</mat-label>
+                <input matInput placeholder="Company Name" [(ngModel)]="shipper.CompanyName" readonly="{{!isEditing}}">
+            </mat-form-field>
+        </div>
+        <div class="">
+            <mat-form-field appearance="outline" floatLabel="always">
+                <mat-label>Phone</mat-label>
+                <input type="text" matInput placeholder="Phone" [(ngModel)]="shipper.Phone" readonly="{{!isEditing}}">
+            </mat-form-field>
+        </div>
+
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions *ngIf="!isEditing">
+        <button mat-button (click)="edit()" color="primary">Edit</button>
+        <button mat-buton (click)="openDeleteDialog()" mat-button color="warn">Delete</button>
+
+    </mat-card-actions>
+    <mat-card-actions *ngIf="isEditing">
+        <button mat-button (click)="update()" color="green">Save</button>
+        <button mat-button (click)="cancel()">Cancel</button>
+    </mat-card-actions>
+</mat-card>

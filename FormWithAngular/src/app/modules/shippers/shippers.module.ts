@@ -11,14 +11,13 @@ import {MatInputModule} from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { CreateComponent } from './create/create.component';
 import { DetailsComponent } from './details/details.component';
 import { DeleteComponent } from './delete/delete.component';
 import { ListComponent } from './list/list.component';
 import { ShippersService } from './shippers.service';
-
-
 
 @NgModule({
   declarations: [
@@ -39,7 +38,8 @@ import { ShippersService } from './shippers.service';
     MatDividerModule,
     MatDialogModule,
     MatIconModule,
-    MatGridListModule
+    MatGridListModule,
+    MatSnackBarModule
   ],
   providers: [
     ShippersService,

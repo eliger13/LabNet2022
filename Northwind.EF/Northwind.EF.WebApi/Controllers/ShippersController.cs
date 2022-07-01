@@ -4,12 +4,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using Northwind.EF.Logic;
 using Northwind.EF.Entities;
 using Northwind.EF.MVC.Models;
 
 namespace Northwind.EF.WebApi.Controllers
 {
+    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
     public class ShippersController : ApiController
     {
         ShippersLogic shippersLogic = new ShippersLogic();
